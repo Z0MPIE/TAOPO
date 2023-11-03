@@ -1,0 +1,26 @@
+{% extends 'partials/base.html' %}
+{% block title %} Purchased Page {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="border bg-white p-3">
+                <h3>Purchased Item</h3>
+                <hr>
+                <div class="alert alert-success">
+                    <h4>Are you certain you have restocked the item?</h4>
+                    <h5>Dont forget to manually input the change in the inventory page</h5>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <a class="btn btn-secondary" href="{% url 'dashboard-grocery' %}">Cancel</a>
+                    <input class="btn btn-warning" type="submit" value="Purchased">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
